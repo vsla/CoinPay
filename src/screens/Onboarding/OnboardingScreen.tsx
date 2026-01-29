@@ -28,7 +28,11 @@ const steps: OnboardingStep[] = [
 ]
 
 
-export function OnboardingScreen() {
+type OnboardingScreenProps = {
+  onComplete?: () => void
+}
+
+export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
   const [currentStep, setCurrentStep] = useState(0)
 
   const handleNext = () => {
@@ -116,8 +120,13 @@ export function OnboardingScreen() {
 
         {/* Button */}
         <Button
-          onClick={handleNext}
-          disabled={currentStep === steps.length - 1}
+          onClick={() => {
+            if (currentStep < steps.length - 1) {
+              handleNext()
+            } else {
+              onComplete?.()
+            }
+          }}
           variant="primary"
         >
           {currentStep === steps.length - 1 ? 'Get Started' : 'Next'}
