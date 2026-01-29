@@ -1,34 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { AnimatePresence } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { MobileContainer } from './components/layout/MobileContainer'
+import { OnboardingScreen } from './screens/Onboarding/OnboardingScreen'
+import { SplashScreen } from './screens/Splash/SplashScreen'
+import { tokens } from './styles/tokens'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showSplash, setShowSplash] = useState(true)
+
+  useEffect(() => {
+    const t = window.setTimeout(() => {
+      setShowSplash(false)
+    }, tokens.motion.durations.splashHoldMs)
+    return () => window.clearTimeout(t)
+  }, [])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <AnimatePresence mode="wait">
+      {showSplash ? (
+        <SplashScreen key="splash" />
+      ) : (
+        <MobileContainer key="onboarding" className="bg-cp-bg">
+          <OnboardingScreen />
+        </MobileContainer>
+      )}
+    </AnimatePresence>
   )
 }
 
