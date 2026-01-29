@@ -15,7 +15,8 @@ export default {
           brand: {
             400: '#38BDF8',
             500: '#0EA5E9',
-            600: '#0284C7',
+            600: '#304FFE',
+
           },
           success: '#2DD4BF',
           danger: '#FB7185',

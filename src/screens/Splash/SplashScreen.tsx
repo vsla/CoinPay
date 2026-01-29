@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { fadeVariants, screenTransition } from '../../motion/transitions'
+import { tokens } from '../../styles/tokens'
 import dottedMapUrl from '../../assets/SplashScreen/DottedMapBackground.svg'
 import logoUrl from '../../assets/SplashScreen/LogoCoinbase.svg'
 import backgroundSplashUrl from '../../assets/SplashScreen/BackgroundSplashCreen.svg'
@@ -9,12 +11,21 @@ type SplashScreenProps = {
 }
 
 export function SplashScreen({ onExitComplete }: SplashScreenProps) {
+  const [shouldExit, setShouldExit] = useState(false)
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setShouldExit(true)
+    }, tokens.motion.durations.splashHoldMs)
+    return () => window.clearTimeout(timer)
+  }, [])
+
   return (
     <motion.div
       className="relative min-h-dvh w-full overflow-hidden"
       variants={fadeVariants}
       initial="initial"
-      animate="animate"
+      animate={shouldExit ? 'exit' : 'animate'}
       exit="exit"
       transition={screenTransition}
       onAnimationComplete={(definition) => {
