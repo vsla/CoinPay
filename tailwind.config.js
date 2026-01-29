@@ -42,6 +42,7 @@ export default {
           'Arial',
           'sans-serif',
         ],
+        poppins: ['Poppins', 'sans-serif'],
       },
       fontSize: {
         'cp-title': ['20px', { lineHeight: '24px', letterSpacing: '-0.01em' }],
