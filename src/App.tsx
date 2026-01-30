@@ -174,13 +174,13 @@ function App() {
         )}
         {screen === 'setting-up-account' && (
           <MobileContainer key="setting-up-account" className="bg-[#121212]">
-            <AccountVerificationLayout progress={1}>
+
               <SettingUpAccountScreen
                 onComplete={() => {
                   console.log('Account verification complete!')
                 }}
               />
-            </AccountVerificationLayout>
+
           </MobileContainer>
         )}
       </AnimatePresence>

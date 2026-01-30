@@ -73,9 +73,9 @@ export function SettingUpAccountScreen({ onComplete }: SettingUpAccountScreenPro
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
-      className="flex min-h-full w-full flex-1 flex-col items-center justify-center"
+      className="flex min-h-full w-full flex-1 flex-col items-center justify-center px-3"
     >
-      <div className="mb-12 flex items-center justify-center">
+      <div className="mb-12 flex items-center justify-center mt-10">
         <img
           src={settingUpAccountImageUrl}
           alt=""
@@ -85,7 +85,7 @@ export function SettingUpAccountScreen({ onComplete }: SettingUpAccountScreenPro
       </div>
 
       <h1 className="mb-4 text-center text-cp-fg font-poppins font-semibold text-cp-h3 leading-[34px] tracking-normal">
-        Setting up your account
+        Setting up <br/> your account
       </h1>
 
       <p className="mb-8 px-4 text-center text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal max-w-[393px] mx-auto">

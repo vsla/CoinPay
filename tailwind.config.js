@@ -60,9 +60,6 @@ export default {
         'cp-small': ['13px', { lineHeight: '18px' }],
         'cp-caption': ['12px', { lineHeight: '16px' }],
       },
-      backgroundImage: {
-        'selfie-overlay': 'radial-gradient(ellipse 337px 463px at 50% 40%, transparent 0%, transparent 50%, rgba(18, 18, 18, 0.6) 50%, rgba(18, 18, 18, 0.85) 100%)',
-      },
     },
   },
   plugins: [

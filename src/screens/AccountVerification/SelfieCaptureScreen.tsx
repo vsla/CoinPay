@@ -27,7 +27,7 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
         }
 
         const mediaStream = await navigator.mediaDevices.getUserMedia({
-          video: { 
+          video: {
             facingMode: 'user',
             width: { ideal: 1280 },
             height: { ideal: 720 }
@@ -87,9 +87,9 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="absolute inset-0 pointer-events-none z-10 bg-selfie-overlay" />
-          <div className="absolute inset-0 flex mt-[110px] justify-center pointer-events-none z-20">
-            <div className="h-[463px] w-[337px] rounded-[50%] border-2 border-white" />
+          <div className="absolute inset-0 pointer-events-none z-10 " style={{ background: 'radial-gradient(ellipse 81% 56% at 50% 34%, transparent 0%, transparent 50%, rgba(18, 18, 18, 0.6) 50%, rgba(18, 18, 18, 0.85) 100%)' }} /> 
+          <div className="absolute inset-0 flex mt-12 justify-center pointer-events-none z-20">
+            <div className="h-3/5 w-5/6 rounded-[50%] border-5 border-white" />
           </div>
         </>
       ) : cameraPermission === 'denied' ? (
