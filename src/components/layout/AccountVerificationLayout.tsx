@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { AccountVerificationHeader } from './AccountVerificationHeader'
+import { PageHeader } from './PageHeader'
 
 type AccountVerificationLayoutProps = {
   children: ReactNode
@@ -15,7 +15,7 @@ export function AccountVerificationLayout({
   return (
     <div className="flex min-h-dvh w-full flex-col">
       <div className="relative z-20 pt-16">
-        <AccountVerificationHeader onBack={onBack} progress={progress} />
+        <PageHeader type="account-verification" onBack={onBack} progress={progress} />
       </div>
       <div className="flex-1">
         {children}

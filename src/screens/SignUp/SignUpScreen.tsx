@@ -25,13 +25,13 @@ export function SignUpScreen({ onSignUp, onLogIn }: SignUpScreenProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex min-h-dvh w-full flex-col bg-cp-bg px-6 pt-12"
+      className="flex min-h-dvh w-full flex-col bg-cp-bg px-6 pt-6"
     >
       <div className="mb-8 flex items-center justify-center">
         <img
           src={createAccountImageUrl}
           alt=""
-          className="h-auto w-full max-w-[280px] object-contain"
+          className="h-auto w-full max-w-3/5 object-contain"
           aria-hidden="true"
         />
       </div>

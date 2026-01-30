@@ -18,7 +18,6 @@ export function MobileContainer({ children, className }: MobileContainerProps) {
       <div
         className={[
           'relative mx-auto min-h-dvh w-full overflow-hidden',
-          'pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]',
           className ?? '',
         ].join(' ')}
         style={{ maxWidth: tokens.layout.maxMobileWidthPx }}

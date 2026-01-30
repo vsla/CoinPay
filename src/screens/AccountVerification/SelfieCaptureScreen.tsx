@@ -117,7 +117,7 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
 
           <button
             onClick={onCapture}
-            className="h-16 w-16 rounded-full border-4 border-white bg-white shadow-lg active:scale-95 mx-6"
+            className="h-16 w-16 rounded-full border-4 border-white bg-white shadow-[0_0_20px_rgba(255,255,255,0.3)] active:scale-95 mx-6"
             aria-label="Capture photo"
           >
             <div className="h-full w-full rounded-full bg-white" />

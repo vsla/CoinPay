@@ -55,7 +55,7 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
 
   return (
     <div className="flex min-h-dvh w-full flex-col bg-cp-bg">
-      <div className="flex flex-1 flex-col items-center px-6 pt-24">
+      <div className="flex flex-1 flex-col items-center px-6  pt-6">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={currentStep}
@@ -73,7 +73,7 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
               <img
                 src={steps[currentStep].imageUrl}
                 alt=""
-                className="h-full w-auto max-w-full object-contain"
+                className="h-full w-auto max-w-5/6 object-contain"
                 aria-hidden="true"
               />
             </div>

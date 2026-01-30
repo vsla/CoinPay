@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { AccountSetupHeader } from './AccountSetupHeader'
+import { PageHeader } from './PageHeader'
 
 type AccountSetupLayoutProps = {
   children: ReactNode
@@ -9,7 +9,7 @@ type AccountSetupLayoutProps = {
 export function AccountSetupLayout({ children, onBack }: AccountSetupLayoutProps) {
   return (
     <div className="flex min-h-dvh w-full flex-col bg-cp-bg pt-16">
-      <AccountSetupHeader onBack={onBack} />
+      <PageHeader type="account-setup" onBack={onBack} />
       <div className="px-4">
         {children}
       </div>
