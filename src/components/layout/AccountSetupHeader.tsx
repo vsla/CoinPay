@@ -1,0 +1,44 @@
+type AccountSetupHeaderProps = {
+  onBack?: () => void
+}
+
+export function AccountSetupHeader({ onBack }: AccountSetupHeaderProps) {
+  return (
+    <div className="mb-6">
+      {onBack && (
+        <div className="mb-4 flex items-center justify-between">
+          <button
+            onClick={onBack}
+            className="-ml-2 flex items-center text-cp-fg"
+            aria-label="Go back"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M15 18L9 12L15 6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+          <span
+            className="text-cp-muted"
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              fontWeight: 400,
+              fontSize: '14px',
+              lineHeight: '19px',
+            }}
+          >
+            Account setup
+          </span>
+          <div className="w-6" />
+        </div>
+      )}
+      <div className="relative h-0.5 w-full bg-cp-border" aria-hidden="true">
+        <div className="absolute left-0 top-0 h-full w-[32px] bg-cp-brand-600" />
+      </div>
+    </div>
+  )
+}
