@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import { MdCheck } from 'react-icons/md'
 import { useEffect, useState } from 'react'
 import settingUpAccountImageUrl from '../../assets/AccountVerification/SettingUpAccountImage.svg'
 
@@ -121,20 +122,7 @@ export function SettingUpAccountScreen({ onComplete }: SettingUpAccountScreenPro
                     exit={{ scale: 0, opacity: 0 }}
                     className="flex h-6 w-6 items-center justify-center rounded-full bg-cp-brand-600"
                   >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M13.333 4L6 11.333L2.667 8"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    <MdCheck size={16} className="text-white" />
                   </motion.div>
                 )}
                 {step.status === 'processing' && (

@@ -48,7 +48,7 @@ export function SignUpScreen({ onSignUp, onLogIn }: SignUpScreenProps) {
         <Button variant="primary" onClick={handleSignUp} isLoading={isLoading}>
           Sign up
         </Button>
-        <Button variant="outline" onClick={onLogIn} disabled={isLoading}>
+        <Button variant="outline" onClick={onLogIn} disabled>
           Log in
         </Button>
       </div>

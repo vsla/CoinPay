@@ -1,6 +1,7 @@
 import { Formik } from 'formik'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { MdCalendarToday } from 'react-icons/md'
 import { Button } from '../../components/ui/Button'
 import { DatePickerModal } from '../../components/ui/DatePickerModal'
 import { Input } from '../../components/ui/Input'
@@ -113,22 +114,7 @@ export function PersonalInfoScreen({ onNext }: PersonalInfoScreenProps) {
                       onClick={() => setShowDatePicker(true)}
                       className="absolute right-4 top-1/2 -translate-y-1/2 text-cp-muted"
                     >
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path
-                          d="M15.833 3.333H4.167C3.247 3.333 2.5 4.08 2.5 5V16.667C2.5 17.587 3.247 18.333 4.167 18.333H15.833C16.753 18.333 17.5 17.587 17.5 16.667V5C17.5 4.08 16.753 3.333 15.833 3.333Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M13.333 1.667V5M6.667 1.667V5M2.5 8.333H17.5"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                      <MdCalendarToday size={20} />
                     </button>
                   </div>
                   {touched.dateOfBirth && errors.dateOfBirth && (

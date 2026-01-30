@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { MdCheck, MdExpandMore } from 'react-icons/md'
 import { countriesWithFlagsAndCallingCodes } from '../../assets/CountriesWithFlagsAndCallingCodes'
 
 type CountrySelectProps = {
@@ -62,21 +63,10 @@ export function CountrySelect({ value, onChange }: CountrySelectProps) {
               {selectedCountry.country}
             </span>
           </div>
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
+          <MdExpandMore
+            size={20}
             className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
-          >
-            <path
-              d="M5 7.5L10 12.5L15 7.5"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          />
         </div>
       </button>
 
@@ -113,15 +103,7 @@ export function CountrySelect({ value, onChange }: CountrySelectProps) {
                     </span>
                   </div>
                   {normalizedValue === country.code && (
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path
-                        d="M16.667 5L7.5 14.167L3.333 10"
-                        stroke="#304FFE"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    <MdCheck size={20} className="text-cp-brand-500" />
                   )}
                 </button>
               ))

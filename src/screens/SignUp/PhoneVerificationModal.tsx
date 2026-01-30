@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import { MdClose } from 'react-icons/md'
 import { Button } from '../../components/ui/Button'
 
 type PhoneVerificationModalProps = {
@@ -42,15 +43,7 @@ export function PhoneVerificationModal({
                 className="absolute right-4 top-4 text-cp-muted hover:text-cp-fg"
                 aria-label="Close"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M18 6L6 18M6 6L18 18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <MdClose size={24} />
               </button>
 
               <div className="mb-6 flex justify-center">

@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { Button } from './Button'
 
 type DatePickerModalProps = {
@@ -147,15 +148,7 @@ export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePicke
                   className="text-cp-fg hover:text-cp-brand-600"
                   aria-label="Previous month"
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M15 18L9 12L15 6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <MdChevronLeft size={24} />
                 </button>
                 <div className="flex items-center gap-2">
                   <button
@@ -184,15 +177,7 @@ export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePicke
                   className="text-cp-fg hover:text-cp-brand-600"
                   aria-label="Next month"
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M9 18L15 12L9 6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <MdChevronRight size={24} />
                 </button>
               </div>
 

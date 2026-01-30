@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { MdCheck, MdExpandMore } from 'react-icons/md'
 import { countriesWithFlagsAndCallingCodes } from '../../assets/CountriesWithFlagsAndCallingCodes'
 
 type PhoneInputProps = {
@@ -75,21 +76,10 @@ export function PhoneInput({
             <span className="text-cp-fg font-poppins font-normal text-cp-body leading-[22px]">
               {phoneCode}
             </span>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
+            <MdExpandMore
+              size={16}
               className={`ml-1 transition-transform ${isCountryOpen ? 'rotate-180' : ''}`}
-            >
-              <path
-                d="M4 6L8 10L12 6"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            />
           </button>
 
           {isCountryOpen && (
@@ -125,15 +115,7 @@ export function PhoneInput({
                         </span>
                       </div>
                       {countryCode.toLowerCase() === country.code && (
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                          <path
-                            d="M16.667 5L7.5 14.167L3.333 10"
-                            stroke="#304FFE"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                        <MdCheck size={20} className="text-cp-brand-500" />
                       )}
                     </button>
                   ))
