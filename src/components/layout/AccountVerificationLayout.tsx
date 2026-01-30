@@ -13,9 +13,11 @@ export function AccountVerificationLayout({
   progress,
 }: AccountVerificationLayoutProps) {
   return (
-    <div className="flex min-h-dvh w-full flex-col pt-16">
-      <AccountVerificationHeader onBack={onBack} progress={progress} />
-      <div className="px-4">
+    <div className="flex min-h-dvh w-full flex-col">
+      <div className="relative z-20 pt-16">
+        <AccountVerificationHeader onBack={onBack} progress={progress} />
+      </div>
+      <div className="flex-1">
         {children}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { typography } from '../../styles/typography'
+import { IoIosArrowBack } from 'react-icons/io'
 
 type AccountVerificationHeaderProps = {
   onBack?: () => void
@@ -16,15 +16,7 @@ export function AccountVerificationHeader({ onBack, progress }: AccountVerificat
           className="-ml-2 mb-4 flex items-center text-cp-fg"
           aria-label="Go back"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M15 18L9 12L15 6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <IoIosArrowBack size={24} />
         </button>
       </div>
       <div className="relative h-0.5 w-full bg-cp-border" aria-hidden="true">

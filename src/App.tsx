@@ -166,14 +166,12 @@ function App() {
           </MobileContainer>
         )}
         {screen === 'selfie-capture' && (
-          <MobileContainer key="selfie-capture" className="bg-[#121212]">
-            <AccountVerificationLayout onBack={() => setScreen('take-selfie')} progress={0.8}>
-              <SelfieCaptureScreen
-                onCapture={() => setScreen('setting-up-account')}
-                onBack={() => setScreen('take-selfie')}
-              />
-            </AccountVerificationLayout>
-          </MobileContainer>
+          <div key="selfie-capture" className="fixed inset-0 z-50 flex min-h-dvh flex-col bg-[#121212]">
+            <SelfieCaptureScreen
+              onCapture={() => setScreen('setting-up-account')}
+              onBack={() => setScreen('take-selfie')}
+            />
+          </div>
         )}
         {screen === 'setting-up-account' && (
           <MobileContainer key="setting-up-account" className="bg-[#121212]">

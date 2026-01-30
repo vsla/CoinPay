@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { MdOutlineFlashOn, MdOutlineFlashOff, MdOutlineFlipCameraIos } from 'react-icons/md'
-import { typography } from '../../styles/typography'
+import { IoIosArrowBack } from 'react-icons/io'
 
 type SelfieCaptureScreenProps = {
   onCapture: () => void
@@ -15,6 +15,8 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
+    const videoElement = videoRef.current
+
     const requestCameraPermission = async () => {
       try {
         const mediaStream = await navigator.mediaDevices.getUserMedia({
@@ -22,8 +24,8 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
         })
         setStream(mediaStream)
         setCameraPermission('granted')
-        if (videoRef.current) {
-          videoRef.current.srcObject = mediaStream
+        if (videoElement) {
+          videoElement.srcObject = mediaStream
         }
       } catch (error) {
         console.error('Camera permission denied:', error)
@@ -40,11 +42,17 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
         }
         return null
       })
-      if (videoRef.current) {
-        videoRef.current.srcObject = null
+      if (videoElement) {
+        videoElement.srcObject = null
       }
     }
   }, [])
+
+  useEffect(() => {
+    if (stream && videoRef.current) {
+      videoRef.current.srcObject = stream
+    }
+  }, [stream])
 
   return (
     <motion.div
@@ -52,11 +60,11 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
-      className="flex min-h-full w-full flex-1 flex-col"
+      className="relative flex h-full w-full min-h-full flex-col overflow-hidden bg-[#121212]"
     >
-      <div className="relative mb-8 flex h-[400px] w-full max-w-[320px] items-center justify-center overflow-hidden rounded-2xl bg-cp-surface">
-        {cameraPermission === 'granted' && stream ? (
-          <div className="relative h-full w-full">
+      {cameraPermission === 'granted' && stream ? (
+        <>
+          <div className="absolute inset-0 h-full w-full">
             <video
               ref={videoRef}
               autoPlay
@@ -64,65 +72,65 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
               muted
               className="h-full w-full object-cover"
             />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="h-[300px] w-[300px] rounded-full border-4 border-white/30" />
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="h-[280px] w-[280px] rounded-full bg-gradient-to-b from-cp-brand-600/20 to-transparent" />
-            </div>
           </div>
-        ) : cameraPermission === 'denied' ? (
-          <div className="flex h-full w-full flex-col items-center justify-center p-6 text-center">
-            <p className="mb-4 text-cp-fg" style={typography.bodySmall}>
-              Camera permission is required to take a selfie
-            </p>
-            <p className="text-cp-muted" style={typography.bodySmall}>
-              Please enable camera access in your browser settings
-            </p>
+          <div className="absolute inset-0 pointer-events-none z-10 bg-selfie-overlay" />
+          <div className="absolute inset-0 flex mt-[110px] justify-center pointer-events-none z-20">
+            <div className="h-[463px] w-[337px] rounded-[50%] border-2 border-white" />
           </div>
-        ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            <div className="h-12 w-12 animate-spin rounded-full border-4 border-cp-brand-600 border-t-transparent" />
-          </div>
-        )}
-      </div>
+        </>
+      ) : cameraPermission === 'denied' ? (
+        <div className="flex h-full w-full flex-col items-center justify-center p-6 text-center bg-[#121212]">
+          <p className="mb-4 text-white font-poppins font-normal text-sm leading-[19px] tracking-normal">
+            Camera permission is required to take a selfie
+          </p>
+          <p className="text-cp-muted font-poppins font-normal text-sm leading-[19px] tracking-normal">
+            Please enable camera access in your browser settings
+          </p>
+        </div>
+      ) : (
+        <div className="flex h-full w-full items-center justify-center bg-[#121212]">
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-cp-brand-600 border-t-transparent" />
+        </div>
+      )}
 
-      <p
-        className="mb-8 text-center text-cp-fg"
-        style={{
-          ...typography.bodySmall,
-          maxWidth: '393px',
-          paddingLeft: '16px',
-          paddingRight: '16px',
-        }}
+      <button
+        onClick={onBack}
+        className="absolute top-4 left-4 z-40 flex items-center text-white"
+        aria-label="Go back"
       >
-        Take your photo at arms length. Make sure your whole face is visible.
-      </p>
+        <IoIosArrowBack size={24} />
+      </button>
 
-      <div className="mt-auto flex w-full items-center justify-between px-8 pb-6 pt-8">
-        <button
-          onClick={() => setFlashOn(!flashOn)}
-          className={`rounded-full p-3 ${flashOn ? 'bg-cp-brand-600 text-white' : 'bg-cp-surface text-cp-muted'}`}
-          aria-label="Toggle flash"
-        >
-          {flashOn ? <MdOutlineFlashOn size={24} /> : <MdOutlineFlashOff size={24} />}
-        </button>
+      <div className="relative z-30 flex h-full flex-col justify-end mb-6">
+        <p className="mb-6 text-center text-white font-poppins font-normal text-sm leading-[22px] tracking-normal max-w-[393px] px-4 mx-auto">
+          Take your photo at arms length. Make sure your whole face is visible.
+        </p>
 
-        <button
-          onClick={onCapture}
-          className="h-16 w-16 rounded-full border-4 border-white bg-white shadow-lg active:scale-95"
-          aria-label="Capture photo"
-        >
-          <div className="h-full w-full rounded-full bg-cp-brand-600" />
-        </button>
+        <div className="flex w-full items-center justify-center px-8 pb-6 pt-4">
+          <button
+            onClick={() => setFlashOn(!flashOn)}
+            className={`rounded-full p-3 ${flashOn ? 'bg-cp-brand-600 text-white' : 'bg-transparent text-white'}`}
+            aria-label="Toggle flash"
+          >
+            {flashOn ? <MdOutlineFlashOn size={24} /> : <MdOutlineFlashOff size={24} />}
+          </button>
 
-        <button
-          onClick={onBack}
-          className="rounded-full bg-cp-surface p-3 text-cp-muted"
-          aria-label="Rotate camera"
-        >
-          <MdOutlineFlipCameraIos size={24} />
-        </button>
+          <button
+            onClick={onCapture}
+            className="h-16 w-16 rounded-full border-4 border-white bg-white shadow-lg active:scale-95 mx-6"
+            aria-label="Capture photo"
+          >
+            <div className="h-full w-full rounded-full bg-white" />
+          </button>
+
+          <button
+            onClick={onBack}
+            className="rounded-full bg-transparent p-3 text-white"
+            aria-label="Rotate camera"
+          >
+            <MdOutlineFlipCameraIos size={24} />
+          </button>
+        </div>
       </div>
     </motion.div>
   )
