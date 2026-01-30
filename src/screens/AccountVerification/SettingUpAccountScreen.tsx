@@ -85,10 +85,10 @@ export function SettingUpAccountScreen({ onComplete }: SettingUpAccountScreenPro
       </div>
 
       <h1 className="mb-4 text-center text-cp-fg font-poppins font-semibold text-cp-h3 leading-[34px] tracking-normal">
-        Setting up <br/> your account
+        Setting up <br /> your account
       </h1>
 
-      <p className="mb-8 px-4 text-center text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal max-w-[393px] mx-auto">
+      <p className="mb-8 px-4 text-center cp-subtitle-text max-w-[393px] mx-auto">
         We are analyzing your data to verify
       </p>
 
@@ -99,29 +99,43 @@ export function SettingUpAccountScreen({ onComplete }: SettingUpAccountScreenPro
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="flex items-center gap-3"
+            className={`flex items-center justify-between  pb-4 mx-4 ${index < steps.length - 1 ? 'border-b-3 border-cp-border' : ''}`}
           >
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2A2A2A]">
+                <span className="text-md font-semibold text-white">{index + 1}</span>
+              </div>
+              <span
+                className={`font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal ${step.status === 'completed' ? 'text-cp-fg' : step.status === 'processing' ? 'text-cp-fg' : 'text-cp-muted'}`}
+              >
+                {step.label}
+              </span>
+            </div>
             <div className="flex h-6 w-6 items-center justify-center">
               <AnimatePresence mode="wait">
                 {step.status === 'completed' && (
-                  <motion.svg
+                  <motion.div
                     key="check"
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
+                    className="flex h-6 w-6 items-center justify-center rounded-full bg-cp-brand-600"
                   >
-                    <path
-                      d="M20 6L9 17L4 12"
-                      stroke="#304FFE"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </motion.svg>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <path
+                        d="M13.333 4L6 11.333L2.667 8"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </motion.div>
                 )}
                 {step.status === 'processing' && (
                   <motion.div
@@ -145,11 +159,6 @@ export function SettingUpAccountScreen({ onComplete }: SettingUpAccountScreenPro
                 )}
               </AnimatePresence>
             </div>
-            <span
-              className={`font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal ${step.status === 'completed' ? 'text-cp-fg' : step.status === 'processing' ? 'text-cp-fg' : 'text-cp-muted'}`}
-            >
-              {step.label}
-            </span>
           </motion.div>
         ))}
       </div>
