@@ -28,7 +28,7 @@ const MONTHS = [
 const WEEKDAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 
 export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePickerModalProps) {
-  const initialDate = value || new Date(1994, 0, 1)
+  const initialDate = value || new Date()
   const [selectedDate, setSelectedDate] = useState<Date>(initialDate)
   const [currentMonth, setCurrentMonth] = useState(initialDate.getMonth())
   const [currentYear, setCurrentYear] = useState(initialDate.getFullYear())
@@ -36,11 +36,13 @@ export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePicke
   const [showYearPicker, setShowYearPicker] = useState(false)
 
   useEffect(() => {
-    if (value) {
-      setSelectedDate(value)
-      setCurrentMonth(value.getMonth())
-      setCurrentYear(value.getFullYear())
+    if (isOpen) {
+      const dateToUse = value || new Date()
+      setSelectedDate(dateToUse)
+      setCurrentMonth(dateToUse.getMonth())
+      setCurrentYear(dateToUse.getFullYear())
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, isOpen])
 
   const getDaysInMonth = (month: number, year: number) => {
@@ -116,7 +118,7 @@ export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePicke
 
   const currentYearValue = new Date().getFullYear()
   const minYear = 1900
-  const maxYear = currentYearValue + 10
+  const maxYear = currentYearValue
   const yearOptions = Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
 
   return (

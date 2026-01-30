@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MdOutlineFlashOn, MdOutlineFlashOff, MdOutlineFlipCameraIos } from 'react-icons/md'
 import { typography } from '../../styles/typography'
 
@@ -10,6 +10,41 @@ type SelfieCaptureScreenProps = {
 
 export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenProps) {
   const [flashOn, setFlashOn] = useState(false)
+  const [cameraPermission, setCameraPermission] = useState<'prompt' | 'granted' | 'denied'>('prompt')
+  const [stream, setStream] = useState<MediaStream | null>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const requestCameraPermission = async () => {
+      try {
+        const mediaStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'user' },
+        })
+        setStream(mediaStream)
+        setCameraPermission('granted')
+        if (videoRef.current) {
+          videoRef.current.srcObject = mediaStream
+        }
+      } catch (error) {
+        console.error('Camera permission denied:', error)
+        setCameraPermission('denied')
+      }
+    }
+
+    requestCameraPermission()
+
+    return () => {
+      setStream((currentStream) => {
+        if (currentStream) {
+          currentStream.getTracks().forEach((track) => track.stop())
+        }
+        return null
+      })
+      if (videoRef.current) {
+        videoRef.current.srcObject = null
+      }
+    }
+  }, [])
 
   return (
     <motion.div
@@ -20,17 +55,36 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
       className="flex min-h-full w-full flex-1 flex-col"
     >
       <div className="relative mb-8 flex h-[400px] w-full max-w-[320px] items-center justify-center overflow-hidden rounded-2xl bg-cp-surface">
-        <div className="relative h-full w-full">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-[300px] w-[300px] rounded-full border-4 border-white/30" />
+        {cameraPermission === 'granted' && stream ? (
+          <div className="relative h-full w-full">
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              muted
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="h-[300px] w-[300px] rounded-full border-4 border-white/30" />
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="h-[280px] w-[280px] rounded-full bg-gradient-to-b from-cp-brand-600/20 to-transparent" />
+            </div>
           </div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-[280px] w-[280px] rounded-full bg-gradient-to-b from-cp-brand-600/20 to-transparent" />
+        ) : cameraPermission === 'denied' ? (
+          <div className="flex h-full w-full flex-col items-center justify-center p-6 text-center">
+            <p className="mb-4 text-cp-fg" style={typography.bodySmall}>
+              Camera permission is required to take a selfie
+            </p>
+            <p className="text-cp-muted" style={typography.bodySmall}>
+              Please enable camera access in your browser settings
+            </p>
           </div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-[250px] w-[250px] rounded-full bg-cp-surface" />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="h-12 w-12 animate-spin rounded-full border-4 border-cp-brand-600 border-t-transparent" />
           </div>
-        </div>
+        )}
       </div>
 
       <p
