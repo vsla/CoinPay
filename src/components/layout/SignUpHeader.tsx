@@ -7,6 +7,7 @@ export function SignUpHeader({ onBack }: SignUpHeaderProps) {
 
   return (
     <div className="mb-6">
+      <div className="px-4">
       <button
         onClick={onBack}
         className="-ml-2 mb-4 flex items-center text-cp-fg"
@@ -22,6 +23,7 @@ export function SignUpHeader({ onBack }: SignUpHeaderProps) {
           />
         </svg>
       </button>
+      </div>
       <div className="relative h-0.5 w-full bg-cp-border" aria-hidden="true">
         <div className="absolute left-0 top-0 h-full w-[32px] bg-cp-brand-600" />
       </div>

@@ -2,10 +2,11 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Button } from '../../components/ui/Button'
 import { PasswordInput } from '../../components/ui/Input'
+import { PhoneInput } from '../../components/ui/PhoneInput'
 import { typography } from '../../styles/typography'
 
 type CreateAccountFormProps = {
-  onNext: (phone: string) => void
+  onNext: (phone: string, countryCode: string) => void
 }
 
 const LOCK_ICON = (
@@ -22,6 +23,7 @@ const LOCK_ICON = (
 
 export function CreateAccountForm({ onNext }: CreateAccountFormProps) {
   const [phone, setPhone] = useState('')
+  const [countryCode, setCountryCode] = useState('bd')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -32,7 +34,7 @@ export function CreateAccountForm({ onNext }: CreateAccountFormProps) {
     setIsLoading(true)
     await new Promise((resolve) => setTimeout(resolve, 300))
     setIsLoading(false)
-    onNext(phone)
+    onNext(phone, countryCode)
   }
 
   return (
@@ -56,22 +58,12 @@ export function CreateAccountForm({ onNext }: CreateAccountFormProps) {
           <label className="mb-2 block text-cp-fg" style={typography.label}>
             Phone
           </label>
-          <div className="relative flex items-center rounded-xl border border-cp-border bg-cp-surface">
-            <div className="flex items-center gap-2 border-r border-cp-border px-4 py-4">
-              <span className="text-lg">🇧🇩</span>
-              <span className="text-cp-fg" style={typography.body}>
-                +880
-              </span>
-            </div>
-            <input
-              type="tel"
-              placeholder="Mobile number"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="flex-1 bg-transparent px-4 py-4 text-cp-fg placeholder:text-cp-muted focus:outline-none"
-              style={typography.body}
-            />
-          </div>
+          <PhoneInput
+            value={phone}
+            onChange={setPhone}
+            countryCode={countryCode}
+            onCountryChange={setCountryCode}
+          />
         </div>
 
         <PasswordInput
