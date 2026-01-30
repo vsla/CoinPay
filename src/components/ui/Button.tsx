@@ -19,7 +19,7 @@ export function Button({
   const variantStyles = {
     primary: 'bg-cp-brand-600 text-white active:bg-cp-brand-500 disabled:bg-cp-surface disabled:text-cp-muted ',
     secondary: 'bg-cp-surface text-cp-fg active:bg-cp-surface2 ',
-    outline: 'border-3 border-white/20 bg-transparent text-white active:bg-white/10 ',
+    outline: 'border-1 border-cp-secondary bg-transparent active:bg-white/10 text-cp-secondary',
   }
 
   return (

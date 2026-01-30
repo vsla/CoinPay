@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import settingUpAccountImageUrl from '../../assets/AccountVerification/SettingUpAccountImage.svg'
-import { typography } from '../../styles/typography'
 
 type SettingUpAccountScreenProps = {
   onComplete: () => void
@@ -21,7 +20,7 @@ export function SettingUpAccountScreen({ onComplete }: SettingUpAccountScreenPro
   ])
 
   useEffect(() => {
-    const timers: NodeJS.Timeout[] = []
+    const timers: ReturnType<typeof setTimeout>[] = []
 
     timers.push(
       setTimeout(() => {
@@ -85,19 +84,11 @@ export function SettingUpAccountScreen({ onComplete }: SettingUpAccountScreenPro
         />
       </div>
 
-      <h1 className="mb-4 text-center text-cp-fg" style={typography.h3}>
+      <h1 className="mb-4 text-center text-cp-fg font-poppins font-semibold text-cp-h3 leading-[34px] tracking-normal">
         Setting up your account
       </h1>
 
-      <p
-        className="mb-8 px-4 text-center text-cp-muted"
-        style={{
-          ...typography.bodySmall,
-          maxWidth: '393px',
-          paddingLeft: '16px',
-          paddingRight: '16px',
-        }}
-      >
+      <p className="mb-8 px-4 text-center text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal max-w-[393px] mx-auto">
         We are analyzing your data to verify
       </p>
 
@@ -155,8 +146,7 @@ export function SettingUpAccountScreen({ onComplete }: SettingUpAccountScreenPro
               </AnimatePresence>
             </div>
             <span
-              className={`${step.status === 'completed' ? 'text-cp-fg' : step.status === 'processing' ? 'text-cp-fg' : 'text-cp-muted'}`}
-              style={typography.bodySmall}
+              className={`font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal ${step.status === 'completed' ? 'text-cp-fg' : step.status === 'processing' ? 'text-cp-fg' : 'text-cp-muted'}`}
             >
               {step.label}
             </span>

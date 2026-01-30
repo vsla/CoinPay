@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { MdOutlinePhotoCamera } from 'react-icons/md'
 import takeSelfieImageUrl from '../../assets/AccountVerification/TakeSelfieImage.svg'
-import { typography } from '../../styles/typography'
 
 type TakeSelfieScreenProps = {
   onNext: () => void
@@ -20,24 +19,16 @@ export function TakeSelfieScreen({ onNext }: TakeSelfieScreenProps) {
         <img
           src={takeSelfieImageUrl}
           alt=""
-          className="h-auto w-full max-w-[280px] object-contain"
+          className="h-auto w-full max-w-3/6 object-contain"
           aria-hidden="true"
         />
       </div>
 
-      <h1 className="mb-4 text-center text-cp-fg" style={typography.h3}>
-        Take selfie to verify your identity
-      </h1>
+      <h3 className="mb-4 text-center text-cp-fg font-poppins font-semibold text-cp-h3 leading-[34px] tracking-normal">
+        Take selfie to verify <br /> your identity
+      </h3>
 
-      <p
-        className="mb-8 text-center text-cp-muted"
-        style={{
-          ...typography.bodySmall,
-          maxWidth: '393px',
-          paddingLeft: '16px',
-          paddingRight: '16px',
-        }}
-      >
+      <p className="mb-4 text-center text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal max-w-[393px] px-4 mx-auto">
         Quick and easy identification verification using your phone's camera. Confirm your identity
         with a self-captured photo.
       </p>
@@ -46,13 +37,13 @@ export function TakeSelfieScreen({ onNext }: TakeSelfieScreenProps) {
         <div className="flex justify-center">
           <button
             onClick={onNext}
-            className="flex h-20 w-20 items-center justify-center rounded-full bg-cp-brand-600 text-white shadow-lg active:scale-95"
-            aria-label="Take selfie"
+            className="flex h-15 w-15 items-center justify-center rounded-full bg-cp-brand-600 text-white shadow-lg active:scale-95"
+            aria-label="Scan ID"
           >
-            <MdOutlinePhotoCamera size={32} />
+            <MdOutlinePhotoCamera size={28} />
           </button>
         </div>
-        <p className="mt-4 text-center text-cp-muted" style={typography.bodySmall}>
+        <p className="mt-2 text-center text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal">
           Take a selfie
         </p>
       </div>

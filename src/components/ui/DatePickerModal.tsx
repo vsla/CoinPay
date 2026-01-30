@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Button } from './Button'
-import { typography } from '../../styles/typography'
 
 type DatePickerModalProps = {
   isOpen: boolean
@@ -165,8 +164,7 @@ export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePicke
                       setShowMonthPicker(!showMonthPicker)
                       setShowYearPicker(false)
                     }}
-                    style={typography.h2}
-                    className="text-cp-fg hover:text-cp-brand-600"
+                    className="text-cp-fg hover:text-cp-brand-600 font-poppins font-semibold text-cp-h2 leading-[28px] tracking-normal"
                   >
                     {MONTHS[currentMonth]}
                   </button>
@@ -176,8 +174,7 @@ export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePicke
                       setShowYearPicker(!showYearPicker)
                       setShowMonthPicker(false)
                     }}
-                    style={typography.h2}
-                    className="text-cp-fg hover:text-cp-brand-600"
+                    className="text-cp-fg hover:text-cp-brand-600 font-poppins font-semibold text-cp-h2 leading-[28px] tracking-normal"
                   >
                     {currentYear}
                   </button>

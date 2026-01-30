@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState, useRef } from 'react'
 import type { KeyboardEvent } from 'react'
-import { typography } from '../../styles/typography'
 
 const CODE_LENGTH = 6
 
@@ -66,11 +65,11 @@ export function VerificationCodeScreen({
       transition={{ duration: 0.3 }}
       className="flex w-full flex-col"
     >
-      <h1 className="mb-2 text-cp-fg" style={typography.h2}>
+      <h1 className="mb-2 text-cp-fg font-poppins font-semibold text-cp-h2 leading-[28px] tracking-normal">
         Confirm your phone
       </h1>
 
-      <p className="mb-8 text-cp-muted" style={typography.bodySmall}>
+      <p className="mb-8 text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal">
         We send 6 digits code to <span className="font-medium text-cp-fg">{phoneNumber}</span>
       </p>
 
@@ -95,12 +94,11 @@ export function VerificationCodeScreen({
           ))}
         </div>
 
-        <p className="text-center text-cp-muted" style={typography.body}>
+        <p className="text-center text-cp-muted font-poppins font-normal text-cp-body leading-[22px]">
           Didn't get a code?{' '}
           <button
             onClick={onResend}
-            className="text-cp-brand-600 underline"
-            style={typography.body}
+            className="text-cp-brand-600 underline font-poppins font-normal text-cp-body leading-[22px]"
           >
             Resend
           </button>

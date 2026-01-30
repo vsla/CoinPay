@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { MdOutlineQrCodeScanner } from 'react-icons/md'
 import scanIdDocumentImageUrl from '../../assets/AccountVerification/ScanIdDocumentImage.svg'
-import { typography } from '../../styles/typography'
 
 type ScanIdDocumentScreenProps = {
   onNext: () => void
@@ -20,23 +19,17 @@ export function ScanIdDocumentScreen({ onNext }: ScanIdDocumentScreenProps) {
         <img
           src={scanIdDocumentImageUrl}
           alt=""
-          className="h-auto w-full max-w-[280px] object-contain"
+          className="h-auto w-full max-w-3/6 object-contain"
           aria-hidden="true"
         />
       </div>
 
-      <h1 className="mb-4 text-center text-cp-fg" style={typography.h3}>
+      <h3 className="mb-4 text-center text-cp-fg font-poppins font-semibold text-cp-h3 leading-[34px] tracking-normal">
         Scan ID document to verify your identity
-      </h1>
+      </h3>
 
       <p
-        className="mb-8 text-center text-cp-muted"
-        style={{
-          ...typography.bodySmall,
-          maxWidth: '393px',
-          paddingLeft: '16px',
-          paddingRight: '16px',
-        }}
+        className="mb-4 text-center text-cp-muted px-4" 
       >
         Confirm your identity with just a few taps on your phone
       </p>
@@ -45,13 +38,13 @@ export function ScanIdDocumentScreen({ onNext }: ScanIdDocumentScreenProps) {
         <div className="flex justify-center">
           <button
             onClick={onNext}
-            className="flex h-20 w-20 items-center justify-center rounded-full bg-cp-brand-600 text-white shadow-lg active:scale-95"
+            className="flex h-15 w-15 items-center justify-center rounded-full bg-cp-brand-600 text-white shadow-lg active:scale-95"
             aria-label="Scan ID"
           >
-            <MdOutlineQrCodeScanner size={32} />
+            <MdOutlineQrCodeScanner size={28} />
           </button>
         </div>
-        <p className="mt-4 text-center text-cp-muted" style={typography.bodySmall}>
+        <p className="mt-2 text-center text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal">
           Scan
         </p>
       </div>

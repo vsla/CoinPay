@@ -19,13 +19,27 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
 
     const requestCameraPermission = async () => {
       try {
+        // Check if getUserMedia is available
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          console.error('getUserMedia is not supported')
+          setCameraPermission('denied')
+          return
+        }
+
         const mediaStream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'user' },
+          video: { 
+            facingMode: 'user',
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
+          },
         })
         setStream(mediaStream)
         setCameraPermission('granted')
         if (videoElement) {
           videoElement.srcObject = mediaStream
+          videoElement.play().catch((err) => {
+            console.error('Error playing video:', err)
+          })
         }
       } catch (error) {
         console.error('Camera permission denied:', error)

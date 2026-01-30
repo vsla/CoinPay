@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
 import { countriesWithFlagsAndCallingCodes } from '../../assets/CountriesWithFlagsAndCallingCodes'
-import { typography } from '../../styles/typography'
 
 type CountrySelectProps = {
   value?: string
@@ -49,7 +48,7 @@ export function CountrySelect({ value, onChange }: CountrySelectProps) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full rounded-xl border border-cp-border bg-cp-surface px-4 py-4 text-left text-cp-fg focus:border-cp-brand-500 focus:outline-none"
+        className="w-full rounded-xl border border-cp-border bg-[#121212] px-4 py-4 text-left text-cp-fg focus:border-cp-brand-500 focus:outline-none"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -59,7 +58,7 @@ export function CountrySelect({ value, onChange }: CountrySelectProps) {
               className="h-5 w-5 object-contain"
               aria-hidden="true"
             />
-            <span style={{ fontFamily: 'Poppins, sans-serif', fontSize: '15px' }}>
+            <span className="font-poppins font-normal text-cp-body leading-[22px]">
               {selectedCountry.country}
             </span>
           </div>
@@ -82,15 +81,14 @@ export function CountrySelect({ value, onChange }: CountrySelectProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute z-50 mt-2 w-full rounded-xl border border-cp-border bg-cp-surface shadow-lg">
+        <div className="absolute z-50 mt-2 w-full rounded-xl border border-cp-border bg-[#121212] shadow-lg">
           <div className="border-b border-cp-border p-3">
             <input
               type="text"
               placeholder="Search country..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-lg border border-cp-border bg-cp-bg px-3 py-2 text-cp-fg placeholder:text-cp-muted focus:border-cp-brand-500 focus:outline-none"
-              style={typography.body}
+              className="w-full rounded-lg border border-cp-border bg-[#121212] px-3 py-2 text-cp-fg placeholder:text-cp-muted focus:border-cp-brand-500 focus:outline-none font-poppins font-normal text-base leading-[22px]"
               autoFocus
             />
           </div>
@@ -110,7 +108,7 @@ export function CountrySelect({ value, onChange }: CountrySelectProps) {
                       className="h-5 w-5 object-contain"
                       aria-hidden="true"
                     />
-                    <span style={{ fontFamily: 'Poppins, sans-serif', fontSize: '15px' }}>
+                    <span className="font-poppins font-normal text-cp-body leading-[22px]">
                       {country.country}
                     </span>
                   </div>

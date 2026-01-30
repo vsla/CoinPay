@@ -1,10 +1,9 @@
 import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { countriesWithFlagsAndCallingCodes } from './assets/CountriesWithFlagsAndCallingCodes'
-import { AccountSetupLayout } from './components/layout/AccountSetupLayout'
 import { AccountVerificationLayout } from './components/layout/AccountVerificationLayout'
+import { FormLayout } from './components/layout/FormLayout'
 import { MobileContainer } from './components/layout/MobileContainer'
-import { SignUpLayout } from './components/layout/SignUpLayout'
 import { AddEmailScreen } from './screens/AccountSetup/AddEmailScreen'
 import { CountryOfResidenceScreen } from './screens/AccountSetup/CountryOfResidenceScreen'
 import { HomeAddressScreen } from './screens/AccountSetup/HomeAddressScreen'
@@ -63,12 +62,12 @@ function App() {
           <SplashScreen key="splash" onExitComplete={() => setScreen('onboarding')} />
         )}
         {screen === 'onboarding' && (
-          <MobileContainer key="onboarding" className="bg-cp-bg">
+          <MobileContainer key="onboarding" className="bg-[#121212]">
             <OnboardingScreen onComplete={() => setScreen('signup')} />
           </MobileContainer>
         )}
         {screen === 'signup' && (
-          <MobileContainer key="signup" className="bg-cp-bg">
+          <MobileContainer key="signup" className="bg-[#121212]">
             <SignUpScreen
               onSignUp={() => setScreen('create-account')}
               onLogIn={() => {}}
@@ -76,15 +75,15 @@ function App() {
           </MobileContainer>
         )}
         {screen === 'create-account' && (
-          <MobileContainer key="create-account" className="bg-cp-bg">
-            <SignUpLayout onBack={() => setScreen('signup')}>
+          <MobileContainer key="create-account" className="bg-[#121212]">
+            <FormLayout type="signup" onBack={() => setScreen('signup')}>
               <CreateAccountForm onNext={handleCreateAccount} />
-            </SignUpLayout>
+            </FormLayout>
           </MobileContainer>
         )}
         {screen === 'verification' && (
-          <MobileContainer key="verification" className="bg-cp-bg">
-            <SignUpLayout onBack={() => setScreen('create-account')}>
+          <MobileContainer key="verification" className="bg-[#121212]">
+            <FormLayout type="signup" onBack={() => setScreen('create-account')}>
               <VerificationCodeScreen
                 phoneNumber={phoneNumber}
                 onVerify={(code) => {
@@ -93,55 +92,55 @@ function App() {
                 }}
                 onResend={() => console.log('Resend code')}
               />
-            </SignUpLayout>
+            </FormLayout>
           </MobileContainer>
         )}
         {screen === 'country-residence' && (
-          <MobileContainer key="country-residence" className="bg-cp-bg">
-            <AccountSetupLayout onBack={() => setScreen('verification')}>
+          <MobileContainer key="country-residence" className="bg-[#121212]">
+            <FormLayout type="account-setup" onBack={() => setScreen('verification')}>
               <CountryOfResidenceScreen
                 onNext={(countryCode) => {
                   console.log('Country selected:', countryCode)
                   setScreen('personal-info')
                 }}
               />
-            </AccountSetupLayout>
+            </FormLayout>
           </MobileContainer>
         )}
         {screen === 'personal-info' && (
-          <MobileContainer key="personal-info" className="bg-cp-bg">
-            <AccountSetupLayout onBack={() => setScreen('country-residence')}>
+          <MobileContainer key="personal-info" className="bg-[#121212]">
+            <FormLayout type="account-setup" onBack={() => setScreen('country-residence')}>
               <PersonalInfoScreen
                 onNext={(data) => {
                   console.log('Personal info:', data)
                   setScreen('home-address')
                 }}
               />
-            </AccountSetupLayout>
+            </FormLayout>
           </MobileContainer>
         )}
         {screen === 'home-address' && (
-          <MobileContainer key="home-address" className="bg-cp-bg">
-            <AccountSetupLayout onBack={() => setScreen('personal-info')}>
+          <MobileContainer key="home-address" className="bg-[#121212]">
+            <FormLayout type="account-setup" onBack={() => setScreen('personal-info')}>
               <HomeAddressScreen
                 onNext={(data) => {
                   console.log('Home address:', data)
                   setScreen('add-email')
                 }}
               />
-            </AccountSetupLayout>
+            </FormLayout>
           </MobileContainer>
         )}
         {screen === 'add-email' && (
-          <MobileContainer key="add-email" className="bg-cp-bg">
-            <AccountSetupLayout onBack={() => setScreen('home-address')}>
+          <MobileContainer key="add-email" className="bg-[#121212]">
+            <FormLayout type="account-setup" onBack={() => setScreen('home-address')}>
               <AddEmailScreen
                 onNext={(email) => {
                   console.log('Email:', email)
                   setScreen('scan-id')
                 }}
               />
-            </AccountSetupLayout>
+            </FormLayout>
           </MobileContainer>
         )}
         {screen === 'scan-id' && (

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { countriesWithFlagsAndCallingCodes } from '../../assets/CountriesWithFlagsAndCallingCodes'
-import { typography } from '../../styles/typography'
 
 type PhoneInputProps = {
   value: string
@@ -55,7 +54,7 @@ export function PhoneInput({
   }
 
   return (
-    <div className="relative flex items-center rounded-xl border border-cp-border bg-cp-surface" ref={containerRef}>
+    <div className="relative flex items-center rounded-xl border border-cp-border bg-[#121212]" ref={containerRef}>
       <div className="relative">
         <button
           type="button"
@@ -68,7 +67,7 @@ export function PhoneInput({
             className="h-5 w-5 object-contain"
             aria-hidden="true"
           />
-          <span className="text-cp-fg" style={typography.body}>
+          <span className="text-cp-fg font-poppins font-normal text-cp-body leading-[22px]">
             {phoneCode}
           </span>
           <svg
@@ -89,15 +88,14 @@ export function PhoneInput({
         </button>
 
         {isCountryOpen && (
-          <div className="absolute left-0 top-full z-50 mt-2 w-80 rounded-xl border border-cp-border bg-cp-surface shadow-lg max-h-[400px]">
+          <div className="absolute left-0 top-full z-50 mt-2 w-80 rounded-xl border border-cp-border bg-[#121212] shadow-lg max-h-[400px]">
             <div className="border-b border-cp-border p-3">
               <input
                 type="text"
                 placeholder="Search country..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border border-cp-border bg-cp-bg px-3 py-2 text-cp-fg placeholder:text-cp-muted focus:border-cp-brand-500 focus:outline-none"
-                style={typography.body}
+                className="w-full rounded-lg border border-cp-border bg-[#121212] px-3 py-2 text-cp-fg placeholder:text-cp-muted focus:border-cp-brand-500 focus:outline-none font-poppins font-normal text-base leading-[22px]"
                 autoFocus
               />
             </div>
@@ -117,7 +115,7 @@ export function PhoneInput({
                         className="h-5 w-5 object-contain"
                         aria-hidden="true"
                       />
-                      <span style={{ fontFamily: 'Poppins, sans-serif', fontSize: '15px' }}>
+                      <span className="font-poppins font-normal text-cp-body leading-[22px]">
                         {country.country}
                       </span>
                     </div>
@@ -148,8 +146,7 @@ export function PhoneInput({
         placeholder="Mobile number"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="flex-1 bg-transparent px-4 py-4 text-cp-fg placeholder:text-cp-muted focus:outline-none"
-        style={typography.body}
+        className="flex-1 bg-transparent px-4 py-4 text-cp-fg placeholder:text-cp-muted focus:outline-none font-poppins font-normal text-base leading-[22px]"
       />
     </div>
   )

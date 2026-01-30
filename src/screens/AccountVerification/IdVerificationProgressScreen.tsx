@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import documentIdCardImageUrl from '../../assets/AccountVerification/DocumentIdCardImage.svg'
-import { typography } from '../../styles/typography'
 
 type IdVerificationProgressScreenProps = {
   onComplete: () => void
@@ -34,7 +33,7 @@ export function IdVerificationProgressScreen({ onComplete }: IdVerificationProgr
       className="flex min-h-full w-full flex-1 flex-col items-center justify-center"
     >
       <div className="mb-8 text-center">
-        <p className="mb-4 text-cp-fg" style={typography.bodySmall}>
+        <p className="mb-4 text-cp-fg font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal">
           1/2 Please scan front of your ID card
         </p>
       </div>
@@ -53,19 +52,11 @@ export function IdVerificationProgressScreen({ onComplete }: IdVerificationProgr
         </div>
       </div>
 
-      <h1 className="mb-4 text-center text-cp-fg" style={typography.h3}>
+      <h1 className="mb-4 text-center text-cp-fg font-poppins font-semibold text-cp-h3 leading-[34px] tracking-normal">
         ID verification in progress
       </h1>
 
-      <p
-        className="mb-8 px-4 text-center text-cp-muted"
-        style={{
-          ...typography.bodySmall,
-          maxWidth: '393px',
-          paddingLeft: '16px',
-          paddingRight: '16px',
-        }}
-      >
+      <p className="mb-8 px-4 text-center text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal max-w-[393px] mx-auto">
         Hold tight, it won't take long
       </p>
 

@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import createAccountImageUrl from '../../assets/SignUp/CreateAccountImage.svg'
 import { Button } from '../../components/ui/Button'
-import { typography } from '../../styles/typography'
 
 type SignUpScreenProps = {
   onSignUp?: () => void
@@ -25,7 +24,7 @@ export function SignUpScreen({ onSignUp, onLogIn }: SignUpScreenProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex min-h-dvh w-full flex-col bg-cp-bg px-6 pt-6"
+      className="flex min-h-dvh w-full flex-col bg-[#121212] px-6 pt-6"
     >
       <div className="mb-8 flex items-center justify-center">
         <img
@@ -36,7 +35,7 @@ export function SignUpScreen({ onSignUp, onLogIn }: SignUpScreenProps) {
         />
       </div>
 
-      <h1 className="mb-4 text-center text-cp-fg" style={typography.h1}>
+      <h1 className="mb-4 text-center text-cp-fg font-poppins font-semibold text-cp-h1 leading-[41px] tracking-normal">
         Create your Coinpay account
       </h1>
 
@@ -55,12 +54,12 @@ export function SignUpScreen({ onSignUp, onLogIn }: SignUpScreenProps) {
       </div>
 
       <p className="pb-6 text-center text-cp-caption text-cp-muted">
-        By continuing you accept our{' '}
-        <a href="#" className="text-cp-brand-600 underline">
+        By continuing you accept our<br />
+        <a href="#" className="text-cp-secondary underline">
           Terms of Service
         </a>{' '}
         and{' '}
-        <a href="#" className="text-cp-brand-600 underline">
+        <a href="#" className="text-cp-secondary underline">
           Privacy Policy
         </a>
       </p>

@@ -6,7 +6,6 @@ import spendMoneyImageUrl from '../../assets/Onboarding/SpendMoneyImage.svg'
 import receiveMoneyImageUrl from '../../assets/Onboarding/ReceiveMoneyImage.svg'
 import { Button } from '../../components/ui/Button'
 import { ProgressIndicator } from '../../components/ui/ProgressIndicator'
-import { typography } from '../../styles/typography'
 
 type OnboardingStep = {
   title: string
@@ -54,7 +53,7 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
   const isLastStep = currentStep === steps.length - 1
 
   return (
-    <div className="flex min-h-dvh w-full flex-col bg-cp-bg">
+    <div className="flex min-h-dvh w-full flex-col bg-[#121212]">
       <div className="flex flex-1 flex-col items-center px-6  pt-6">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
@@ -95,14 +94,14 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
             dragElastic={0.2}
             className="flex w-full flex-col items-center"
           >
-            <h1 className="mb-auto text-center text-cp-fg" style={typography.h1}>
+            <h1 className="mb-auto text-center text-cp-fg font-poppins font-semibold text-cp-h1 leading-[41px] tracking-normal">
               {steps[currentStep].title}
             </h1>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="px-6 pb-10 pt-4">
+      <div className="px-6 pb-5 pt-4">
         <Button
           onClick={() => {
             if (isLastStep) {

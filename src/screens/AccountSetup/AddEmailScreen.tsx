@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
-import { typography } from '../../styles/typography'
 
 type AddEmailScreenProps = {
   onNext: (email: string) => void
@@ -35,11 +34,11 @@ export function AddEmailScreen({ onNext }: AddEmailScreenProps) {
       transition={{ duration: 0.3 }}
       className="flex w-full flex-col"
     >
-        <h1 className="mb-2 text-cp-fg" style={typography.h2}>
+        <h1 className="mb-2 text-cp-fg font-poppins font-semibold text-cp-h2 leading-[28px] tracking-normal">
           Add your email
         </h1>
 
-      <p className="mb-8 text-cp-muted" style={typography.bodySmall}>
+      <p className="mb-8 text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal">
         This info needs to be accurate with your ID document.
       </p>
 

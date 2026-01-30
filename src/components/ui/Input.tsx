@@ -1,6 +1,5 @@
 import type { InputHTMLAttributes, ReactNode } from 'react'
 import { useState } from 'react'
-import { typography } from '../../styles/typography'
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string
@@ -20,7 +19,7 @@ export function Input({
 }: InputProps) {
   return (
     <div className="w-full">
-      <label className="mb-2 block text-cp-fg" style={typography.label}>
+      <label className="mb-2 block text-cp-fg font-poppins font-normal text-cp-label leading-[19px] tracking-normal">
         {label}
       </label>
       <div className="relative">
@@ -30,10 +29,10 @@ export function Input({
           </div>
         )}
         <input
-          className={`w-full rounded-xl border bg-cp-surface px-4 py-4 text-cp-fg placeholder:text-cp-muted focus:border-cp-brand-500 focus:outline-none ${
+          className={`w-full rounded-xl border bg-[#121212] px-4 py-4 text-cp-fg placeholder:text-cp-muted focus:border-cp-brand-500 focus:outline-none font-poppins font-normal text-base leading-[22px] ${
             leftIcon ? 'pl-12' : ''
           } ${rightIcon ? 'pr-12' : ''} ${error ? 'border-cp-danger' : 'border-cp-border'} ${className}`}
-          style={{ ...typography.body, ...style }}
+          style={style}
           {...props}
         />
         {rightIcon && (

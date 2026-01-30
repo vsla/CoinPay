@@ -3,23 +3,12 @@ import { useState } from 'react'
 import { Button } from '../../components/ui/Button'
 import { PasswordInput } from '../../components/ui/Input'
 import { PhoneInput } from '../../components/ui/PhoneInput'
-import { typography } from '../../styles/typography'
+import { MdLockOutline } from 'react-icons/md'
 
 type CreateAccountFormProps = {
   onNext: (phone: string, countryCode: string) => void
 }
 
-const LOCK_ICON = (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <path
-      d="M15.625 7.5V5.625C15.625 3.00684 13.4932 0.875 10.875 0.875C8.25684 0.875 6.125 3.00684 6.125 5.625V7.5M10.875 13.125V15M5.625 7.5H16.125C16.7463 7.5 17.25 8.00368 17.25 8.625V16.375C17.25 16.9963 16.7463 17.5 16.125 17.5H5.625C5.00368 17.5 4.5 16.9963 4.5 16.375V8.625C4.5 8.00368 5.00368 7.5 5.625 7.5Z"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
 
 export function CreateAccountForm({ onNext }: CreateAccountFormProps) {
   const [phone, setPhone] = useState('')
@@ -45,17 +34,17 @@ export function CreateAccountForm({ onNext }: CreateAccountFormProps) {
       transition={{ duration: 0.3 }}
       className="flex w-full flex-col"
     >
-      <h1 className="mb-2 text-cp-fg" style={typography.h2}>
+      <h1 className="mb-2 text-cp-fg font-poppins font-semibold text-cp-h2 leading-[28px] tracking-normal">
         Create an Account
       </h1>
 
-      <p className="mb-8 text-cp-muted" style={typography.bodySmall}>
+      <p className="mb-8 text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal">
         Enter your mobile number to verify your account
       </p>
 
       <div className="mb-auto space-y-4">
         <div className="w-full">
-          <label className="mb-2 block text-cp-fg" style={typography.label}>
+          <label className="mb-2 block text-cp-fg font-poppins font-normal text-cp-label leading-[19px] tracking-normal">
             Phone
           </label>
           <PhoneInput
@@ -70,7 +59,7 @@ export function CreateAccountForm({ onNext }: CreateAccountFormProps) {
           label="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          leftIcon={LOCK_ICON}
+          leftIcon={<MdLockOutline size={20} />}
         />
       </div>
 

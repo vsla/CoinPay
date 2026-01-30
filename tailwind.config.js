@@ -9,7 +9,7 @@ export default {
           surface: '#0C1222',
           surface2: '#0F1830',
           border: 'rgba(255,255,255,0.08)',
-          fg: '#EAF0FF',
+          fg: '#E8E8E8',
           muted: '#A9B4D0',
           subtle: '#7D89A8',
           brand: {
@@ -21,6 +21,7 @@ export default {
           success: '#2DD4BF',
           danger: '#FB7185',
           warn: '#FBBF24',
+          secondary: '#A4ABFF',
         },
       },
       boxShadow: {
@@ -47,9 +48,12 @@ export default {
       },
       fontSize: {
         'cp-title': ['20px', { lineHeight: '24px', letterSpacing: '-0.01em' }],
-        'cp-h1': ['28px', { lineHeight: '34px', letterSpacing: '-0.02em' }],
-        'cp-h2': ['22px', { lineHeight: '28px', letterSpacing: '-0.02em' }],
+        'cp-h1': ['34px', { lineHeight: '41px', letterSpacing: '0px' }],
+        'cp-h2': ['22px', { lineHeight: '28px', letterSpacing: '0px' }],
+        'cp-h3': ['28px', { lineHeight: '34px', letterSpacing: '0px' }],
         'cp-body': ['15px', { lineHeight: '22px' }],
+        'cp-body-small': ['14px', { lineHeight: '19px', letterSpacing: '0px' }],
+        'cp-label': ['14px', { lineHeight: '19px', letterSpacing: '0px' }],
         'cp-small': ['13px', { lineHeight: '18px' }],
         'cp-caption': ['12px', { lineHeight: '16px' }],
       },
