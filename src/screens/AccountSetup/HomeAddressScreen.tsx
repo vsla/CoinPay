@@ -20,7 +20,7 @@ export function HomeAddressScreen({ onNext }: HomeAddressScreenProps) {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
-      className="flex w-full flex-col"
+      className="flex min-h-full w-full flex-1 flex-col"
     >
         <h1 className="mb-2 cp-title-text">
           Home address
@@ -30,7 +30,7 @@ export function HomeAddressScreen({ onNext }: HomeAddressScreenProps) {
         This info needs to be accurate with your ID document.
       </p>
 
-      <div className="mb-auto space-y-4">
+      <div className="mb-auto flex-1 space-y-4">
         <Input
           label="Address Line"
           placeholder="Mr. Jhon Doe"
@@ -53,7 +53,7 @@ export function HomeAddressScreen({ onNext }: HomeAddressScreenProps) {
         />
       </div>
 
-      <div className="pb-6 pt-8">
+      <div className="mt-auto pb-6 pt-8">
         <Button
           variant="primary"
           onClick={() => onNext({ addressLine, city, postcode })}

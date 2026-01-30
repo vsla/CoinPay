@@ -32,7 +32,7 @@ export function AddEmailScreen({ onNext }: AddEmailScreenProps) {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
-      className="flex w-full flex-col"
+      className="flex min-h-full w-full flex-1 flex-col"
     >
         <h1 className="mb-2 cp-title-text">
           Add your email
@@ -42,7 +42,7 @@ export function AddEmailScreen({ onNext }: AddEmailScreenProps) {
         This info needs to be accurate with your ID document.
       </p>
 
-      <div className="mb-auto">
+      <div className="mb-auto flex-1">
         <Input
           label="Email"
           type="email"
@@ -53,7 +53,7 @@ export function AddEmailScreen({ onNext }: AddEmailScreenProps) {
         />
       </div>
 
-      <div className="pb-6 pt-8">
+      <div className="mt-auto pb-6 pt-8">
         <Button variant="primary" onClick={() => onNext(email)} disabled={!isValid}>
           Continue
         </Button>

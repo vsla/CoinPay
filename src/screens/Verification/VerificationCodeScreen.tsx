@@ -63,7 +63,7 @@ export function VerificationCodeScreen({
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
-      className="flex w-full flex-col"
+      className="flex min-h-full w-full flex-1 flex-col"
     >
       <h1 className="mb-2 cp-title-text">
         Confirm your phone
@@ -73,7 +73,7 @@ export function VerificationCodeScreen({
         We send 6 digits code to <span className="font-medium text-cp-fg">{phoneNumber}</span>
       </p>
 
-      <div className="mb-auto">
+      <div className="mb-auto flex-1">
         <div className="mb-8 flex gap-3">
           {code.map((digit, index) => (
             <input
