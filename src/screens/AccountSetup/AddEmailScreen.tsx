@@ -1,13 +1,16 @@
+import { Formik } from 'formik'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
+import { emailSchema } from '../../utils/validationSchemas'
 
 type AddEmailScreenProps = {
   onNext: (email: string) => void
 }
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+type EmailFormValues = {
+  email: string
+}
 
 const EMAIL_ICON = (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -22,42 +25,69 @@ const EMAIL_ICON = (
 )
 
 export function AddEmailScreen({ onNext }: AddEmailScreenProps) {
-  const [email, setEmail] = useState('')
+  const initialValues: EmailFormValues = {
+    email: '',
+  }
 
-  const isValid = EMAIL_REGEX.test(email)
+  const handleSubmit = (values: EmailFormValues) => {
+    onNext(values.email)
+  }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      transition={{ duration: 0.3 }}
-      className="flex min-h-full w-full flex-1 flex-col"
+    <Formik
+      initialValues={initialValues}
+      validationSchema={emailSchema}
+      onSubmit={handleSubmit}
     >
-        <h1 className="mb-2 cp-title-text">
-          Add your email
-        </h1>
+      {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setTouched }) => (
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.3 }}
+          className="flex min-h-full w-full flex-1 flex-col"
+        >
+          <h1 className="mb-2 cp-title-text">
+            Add your email
+          </h1>
 
-      <p className="mb-8 cp-subtitle-text">
-        This info needs to be accurate with your ID document.
-      </p>
+          <p className="mb-8 cp-subtitle-text">
+            This info needs to be accurate with your ID document.
+          </p>
 
-      <div className="mb-auto flex-1">
-        <Input
-          label="Email"
-          type="email"
-          placeholder="name@example.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          leftIcon={EMAIL_ICON}
-        />
-      </div>
+          <form
+            onSubmit={(e) => {
+              setTouched({ email: true })
+              handleSubmit(e)
+            }}
+            className="flex min-h-full w-full flex-1 flex-col"
+          >
+            <div className="mb-auto flex-1">
+              <Input
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="name@example.com"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.email && errors.email ? errors.email : undefined}
+                leftIcon={EMAIL_ICON}
+              />
+            </div>
 
-      <div className="mt-auto pb-6 pt-8">
-        <Button variant="primary" onClick={() => onNext(email)} disabled={!isValid}>
-          Continue
-        </Button>
-      </div>
-    </motion.div>
+            <div className="mt-auto pb-6 pt-8">
+              <Button
+                type="submit"
+                variant="primary"
+                disabled={!values.email}
+              >
+                Continue
+              </Button>
+            </div>
+          </form>
+        </motion.div>
+      )}
+    </Formik>
   )
 }
