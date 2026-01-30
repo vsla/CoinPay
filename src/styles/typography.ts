@@ -33,4 +33,11 @@ export const typography = {
     lineHeight: '19px',
     letterSpacing: '0px',
   },
+  h3: {
+    fontFamily: 'Poppins, sans-serif',
+    fontWeight: 600,
+    fontSize: '28px',
+    lineHeight: '34px',
+    letterSpacing: '0px',
+  },
 } as const
