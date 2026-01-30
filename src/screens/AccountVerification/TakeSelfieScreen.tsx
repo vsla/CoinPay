@@ -28,7 +28,7 @@ export function TakeSelfieScreen({ onNext }: TakeSelfieScreenProps) {
         Take selfie to verify <br /> your identity
       </h3>
 
-      <p className="mb-4 text-center text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal max-w-[393px] px-4 mx-auto">
+      <p className="mb-4 text-center cp-subtitle-text max-w-[393px] px-4 mx-auto">
         Quick and easy identification verification using your phone's camera. Confirm your identity
         with a self-captured photo.
       </p>

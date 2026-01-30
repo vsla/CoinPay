@@ -28,9 +28,7 @@ export function ScanIdDocumentScreen({ onNext }: ScanIdDocumentScreenProps) {
         Scan ID document to verify your identity
       </h3>
 
-      <p
-        className="mb-4 text-center text-cp-muted px-4" 
-      >
+      <p className="mb-4 text-center cp-subtitle-text px-4">
         Confirm your identity with just a few taps on your phone
       </p>
 

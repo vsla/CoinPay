@@ -39,7 +39,7 @@ export function SignUpScreen({ onSignUp, onLogIn }: SignUpScreenProps) {
         Create your Coinpay account
       </h1>
 
-      <p className="mb-auto text-center text-cp-body text-cp-muted">
+      <p className="mb-auto text-center cp-subtitle-text">
         Coinpay is a powerful tool that allows you to easily send, receive, and track all your
         transactions.
       </p>

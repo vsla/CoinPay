@@ -34,11 +34,11 @@ export function CreateAccountForm({ onNext }: CreateAccountFormProps) {
       transition={{ duration: 0.3 }}
       className="flex w-full flex-col"
     >
-      <h1 className="mb-2 text-cp-fg font-poppins font-semibold text-cp-h2 leading-[28px] tracking-normal">
+      <h1 className="mb-2 cp-title-text">
         Create an Account
       </h1>
 
-      <p className="mb-8 text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal">
+      <p className="mb-8 cp-subtitle-text">
         Enter your mobile number to verify your account
       </p>
 

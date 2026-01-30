@@ -56,7 +56,7 @@ export function IdVerificationProgressScreen({ onComplete }: IdVerificationProgr
         ID verification in progress
       </h1>
 
-      <p className="mb-8 px-4 text-center text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal max-w-[393px] mx-auto">
+      <p className="mb-8 px-4 text-center cp-subtitle-text max-w-[393px] mx-auto">
         Hold tight, it won't take long
       </p>
 

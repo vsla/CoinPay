@@ -12,6 +12,9 @@ export default {
           fg: '#E8E8E8',
           muted: '#A9B4D0',
           subtle: '#7D89A8',
+          subtitle: '#D0D0D0',
+          title: '#F7F7F7',
+          disabled: '#717171',
           brand: {
             400: '#38BDF8',
             500: '#0EA5E9',
@@ -62,6 +65,27 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.cp-subtitle-text': {
+          fontFamily: 'Poppins, sans-serif',
+          fontWeight: '400',
+          fontSize: '14px',
+          lineHeight: '19px',
+          letterSpacing: '0px',
+          color: '#D0D0D0',
+        },
+        '.cp-title-text': {
+          fontFamily: 'Poppins, sans-serif',
+          fontWeight: '600',
+          fontSize: '22px',
+          lineHeight: '28px',
+          letterSpacing: '0px',
+          color: '#F7F7F7',
+        },
+      })
+    },
+  ],
 }
 

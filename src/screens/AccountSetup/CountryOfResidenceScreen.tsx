@@ -18,11 +18,11 @@ export function CountryOfResidenceScreen({ onNext }: CountryOfResidenceScreenPro
       transition={{ duration: 0.3 }}
       className="flex w-full flex-col"
     >
-        <h1 className="mb-2 text-cp-fg font-poppins font-semibold text-cp-h2 leading-[28px] tracking-normal">
+        <h1 className="mb-2 cp-title-text">
           Country of residence
         </h1>
 
-      <p className="mb-8 text-cp-muted font-poppins font-normal text-cp-body-small leading-[19px] tracking-normal">
+      <p className="mb-8 cp-subtitle-text">
         This info needs to be accurate with your ID document.
       </p>
 
