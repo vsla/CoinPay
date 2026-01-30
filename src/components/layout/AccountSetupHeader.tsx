@@ -5,6 +5,8 @@ type AccountSetupHeaderProps = {
 export function AccountSetupHeader({ onBack }: AccountSetupHeaderProps) {
   return (
     <div className="mb-6">
+      <div className="px-4">
+
       {onBack && (
         <div className="mb-4 flex items-center justify-between">
           <button
@@ -36,6 +38,7 @@ export function AccountSetupHeader({ onBack }: AccountSetupHeaderProps) {
           <div className="w-6" />
         </div>
       )}
+      </div>
       <div className="relative h-0.5 w-full bg-cp-border" aria-hidden="true">
         <div className="absolute left-0 top-0 h-full w-[32px] bg-cp-brand-600" />
       </div>
