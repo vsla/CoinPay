@@ -6,6 +6,7 @@ import { FormLayout } from './components/layout/FormLayout'
 import { MobileContainer } from './components/layout/MobileContainer'
 import { AddEmailScreen } from './screens/AccountSetup/AddEmailScreen'
 import { CountryOfResidenceScreen } from './screens/AccountSetup/CountryOfResidenceScreen'
+import { CreatePasscodeScreen } from './screens/AccountSetup/CreatePasscodeScreen'
 import { HomeAddressScreen } from './screens/AccountSetup/HomeAddressScreen'
 import { PersonalInfoScreen } from './screens/AccountSetup/PersonalInfoScreen'
 import { IdVerificationProgressScreen } from './screens/AccountVerification/IdVerificationProgressScreen'
@@ -30,6 +31,7 @@ type Screen =
   | 'personal-info'
   | 'home-address'
   | 'add-email'
+  | 'create-passcode'
   | 'scan-id'
   | 'id-verification-progress'
   | 'take-selfie'
@@ -174,13 +176,20 @@ function App() {
         )}
         {screen === 'setting-up-account' && (
           <MobileContainer key="setting-up-account" className="bg-[#121212]">
-
-              <SettingUpAccountScreen
-                onComplete={() => {
-                  console.log('Account verification complete!')
+            <SettingUpAccountScreen
+              onComplete={() => setScreen('create-passcode')}
+            />
+          </MobileContainer>
+        )}
+        {screen === 'create-passcode' && (
+          <MobileContainer key="create-passcode" className="bg-[#121212]">
+            <FormLayout type="passcode" onBack={() => setScreen('setting-up-account')}>
+              <CreatePasscodeScreen
+                onNext={(passcode) => {
+                  console.log('Passcode set', passcode)
                 }}
               />
-
+            </FormLayout>
           </MobileContainer>
         )}
       </AnimatePresence>

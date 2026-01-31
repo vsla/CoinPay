@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { PageHeader } from './PageHeader'
 
-export type FormLayoutType = 'signup' | 'account-setup'
+export type FormLayoutType = 'signup' | 'account-setup' | 'passcode'
 
 type FormLayoutProps = {
   type: FormLayoutType
