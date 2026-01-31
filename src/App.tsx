@@ -20,6 +20,7 @@ import { PhoneVerificationModal } from './screens/SignUp/PhoneVerificationModal'
 import { SignUpScreen } from './screens/SignUp/SignUpScreen'
 import { SplashScreen } from './screens/Splash/SplashScreen'
 import { VerificationCodeScreen } from './screens/Verification/VerificationCodeScreen'
+import { WelcomeScreen } from './screens/Welcome/WelcomeScreen'
 
 type Screen =
   | 'splash'
@@ -37,6 +38,7 @@ type Screen =
   | 'take-selfie'
   | 'selfie-capture'
   | 'setting-up-account'
+  | 'welcome'
 
 function App() {
   const [screen, setScreen] = useState<Screen>('splash')
@@ -187,8 +189,16 @@ function App() {
               <CreatePasscodeScreen
                 onNext={(passcode) => {
                   console.log('Passcode set', passcode)
+                  setScreen('welcome')
                 }}
               />
+            </FormLayout>
+          </MobileContainer>
+        )}
+        {screen === 'welcome' && (
+          <MobileContainer key="welcome" className="bg-[#121212]">
+            <FormLayout type="welcome" onBack={() => setScreen('create-passcode')}>
+              <WelcomeScreen onContinue={() => console.log('Welcome continue')} />
             </FormLayout>
           </MobileContainer>
         )}

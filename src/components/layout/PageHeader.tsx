@@ -1,6 +1,6 @@
 import { IoIosArrowBack } from 'react-icons/io'
 
-type PageHeaderType = 'signup' | 'account-setup' | 'account-verification' | 'passcode'
+type PageHeaderType = 'signup' | 'account-setup' | 'account-verification' | 'passcode' | 'welcome'
 
 type PageHeaderProps = {
   type: PageHeaderType
@@ -13,11 +13,12 @@ const headerTitles: Record<PageHeaderType, string> = {
   'account-setup': 'Account setup',
   'account-verification': 'Account verification',
   'passcode': 'Set pin',
+  'welcome': 'Welcome',
 }
 
 export function PageHeader({ type, onBack, progress }: PageHeaderProps) {
   const title = headerTitles[type]
-  const showTitle = type === 'account-setup' || type === 'account-verification' || type === 'passcode'
+  const showTitle = type === 'account-setup' || type === 'account-verification' || type === 'passcode' || type === 'welcome'
   const isVerification = type === 'account-verification'
   
   if (!onBack && !showTitle) return null
