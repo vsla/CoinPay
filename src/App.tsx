@@ -90,11 +90,8 @@ function App() {
             <FormLayout type="signup" onBack={() => setScreen('create-account')}>
               <VerificationCodeScreen
                 phoneNumber={phoneNumber}
-                onVerify={(code) => {
-                  console.log('Verification code:', code)
-                  setScreen('country-residence')
-                }}
-                onResend={() => console.log('Resend code')}
+                onVerify={() => setScreen('country-residence')}
+                onResend={() => {}}
               />
             </FormLayout>
           </MobileContainer>
@@ -103,10 +100,7 @@ function App() {
           <MobileContainer key="country-residence" className="bg-[#121212]">
             <FormLayout type="account-setup" onBack={() => setScreen('verification')}>
               <CountryOfResidenceScreen
-                onNext={(countryCode) => {
-                  console.log('Country selected:', countryCode)
-                  setScreen('personal-info')
-                }}
+                onNext={() => setScreen('personal-info')}
               />
             </FormLayout>
           </MobileContainer>
@@ -115,10 +109,7 @@ function App() {
           <MobileContainer key="personal-info" className="bg-[#121212]">
             <FormLayout type="account-setup" onBack={() => setScreen('country-residence')}>
               <PersonalInfoScreen
-                onNext={(data) => {
-                  console.log('Personal info:', data)
-                  setScreen('home-address')
-                }}
+                onNext={() => setScreen('home-address')}
               />
             </FormLayout>
           </MobileContainer>
@@ -127,10 +118,7 @@ function App() {
           <MobileContainer key="home-address" className="bg-[#121212]">
             <FormLayout type="account-setup" onBack={() => setScreen('personal-info')}>
               <HomeAddressScreen
-                onNext={(data) => {
-                  console.log('Home address:', data)
-                  setScreen('add-email')
-                }}
+                onNext={() => setScreen('add-email')}
               />
             </FormLayout>
           </MobileContainer>
@@ -139,10 +127,7 @@ function App() {
           <MobileContainer key="add-email" className="bg-[#121212]">
             <FormLayout type="account-setup" onBack={() => setScreen('home-address')}>
               <AddEmailScreen
-                onNext={(email) => {
-                  console.log('Email:', email)
-                  setScreen('scan-id')
-                }}
+                onNext={() => setScreen('scan-id')}
               />
             </FormLayout>
           </MobileContainer>
@@ -187,10 +172,7 @@ function App() {
           <MobileContainer key="create-passcode" className="bg-[#121212]">
             <FormLayout type="passcode" onBack={() => setScreen('setting-up-account')}>
               <CreatePasscodeScreen
-                onNext={(passcode) => {
-                  console.log('Passcode set', passcode)
-                  setScreen('welcome')
-                }}
+                onNext={() => setScreen('welcome')}
               />
             </FormLayout>
           </MobileContainer>
@@ -198,7 +180,7 @@ function App() {
         {screen === 'welcome' && (
           <MobileContainer key="welcome" className="bg-[#121212]">
             <FormLayout type="welcome" onBack={() => setScreen('create-passcode')}>
-              <WelcomeScreen onContinue={() => console.log('Welcome continue')} />
+              <WelcomeScreen onContinue={() => {}} />
             </FormLayout>
           </MobileContainer>
         )}

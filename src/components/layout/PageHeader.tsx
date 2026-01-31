@@ -5,7 +5,7 @@ type PageHeaderType = 'signup' | 'account-setup' | 'account-verification' | 'pas
 type PageHeaderProps = {
   type: PageHeaderType
   onBack?: () => void
-  progress?: number // 0 to 1, only used for account-verification
+  progress?: number
 }
 
 const headerTitles: Record<PageHeaderType, string> = {

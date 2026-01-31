@@ -22,7 +22,6 @@ export function enrichWithCallingCodes(countries: Country[]): EnrichedCountry[] 
     try {
       const upperCode = c.code.toUpperCase()
 
-      // libphonenumber-js only supports valid ISO country codes
       if (!getCountries().includes(upperCode as any)) {
         return {
           ...c,

@@ -19,14 +19,11 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
 
     const requestCameraPermission = async () => {
       try {
-        // Camera requires HTTPS (or localhost) in modern browsers
         if (!window.isSecureContext) {
-          console.error('Camera requires a secure context (HTTPS). Use HTTPS or test on the same device with localhost.')
           setCameraPermission('denied')
           return
         }
-        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-          console.error('getUserMedia is not supported')
+        if (!navigator.mediaDevices?.getUserMedia) {
           setCameraPermission('denied')
           return
         }
@@ -42,12 +39,9 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
         setCameraPermission('granted')
         if (videoElement) {
           videoElement.srcObject = mediaStream
-          videoElement.play().catch((err) => {
-            console.error('Error playing video:', err)
-          })
+          videoElement.play().catch(() => {})
         }
-      } catch (error) {
-        console.error('Camera permission denied:', error)
+      } catch {
         setCameraPermission('denied')
       }
     }
@@ -105,7 +99,7 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
                 Camera requires a secure connection (HTTPS)
               </p>
               <p className="text-cp-muted font-poppins font-normal text-sm leading-[19px] tracking-normal">
-                When testing from your phone via HTTP, the browser blocks the camera. Use HTTPS (e.g. a tunnel or deploy) or test on the same device with localhost.
+                Use HTTPS or test on the same device with localhost.
               </p>
             </>
           ) : (

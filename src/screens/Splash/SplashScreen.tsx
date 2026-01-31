@@ -32,10 +32,8 @@ export function SplashScreen({ onExitComplete }: SplashScreenProps) {
         if (definition === 'exit') onExitComplete?.()
       }}
     >
-      {/* Base */}
       <div className="absolute inset-0 bg-[#043164]" aria-hidden="true" />
 
-      {/* Diagonal background (Figma export) */}
       <img
         src={backgroundSplashUrl}
         alt=""
@@ -43,15 +41,13 @@ export function SplashScreen({ onExitComplete }: SplashScreenProps) {
         className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.85]"
       />
 
-      {/* Dotted world map */}
       <img
         src={dottedMapUrl}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-1/2 w-full -translate-y-1/2 select-none "
+        className="pointer-events-none absolute inset-x-0 top-1/2 w-full -translate-y-1/2 select-none"
       />
 
-      {/* Logo */}
       <div className="relative flex min-h-dvh w-full items-center justify-center px-6 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
         <img
           src={logoUrl}

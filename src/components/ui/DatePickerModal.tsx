@@ -27,9 +27,13 @@ const MONTHS = [
 
 const WEEKDAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 
-export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePickerModalProps) {
-  const now = new Date()
-  const initialDate = value ?? now
+type DatePickerContentProps = {
+  initialDate: Date
+  onConfirm: (date: Date) => void
+  onClose: () => void
+}
+
+function DatePickerContent({ initialDate, onConfirm, onClose }: DatePickerContentProps) {
   const [selectedDate, setSelectedDate] = useState<Date>(initialDate)
   const [currentMonth, setCurrentMonth] = useState(initialDate.getMonth())
   const [currentYear, setCurrentYear] = useState(initialDate.getFullYear())
@@ -37,16 +41,6 @@ export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePicke
   const [showYearPicker, setShowYearPicker] = useState(false)
   const yearListRef = useRef<HTMLDivElement>(null)
   const currentYearButtonRef = useRef<HTMLButtonElement>(null)
-
-  useEffect(() => {
-    if (isOpen) {
-      const dateToUse = value ?? new Date()
-      setSelectedDate(dateToUse)
-      setCurrentMonth(dateToUse.getMonth())
-      setCurrentYear(dateToUse.getFullYear())
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, isOpen])
 
   useEffect(() => {
     if (showYearPicker && currentYearButtonRef.current && yearListRef.current) {
@@ -131,26 +125,7 @@ export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePicke
   const yearOptions = Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 z-50 bg-black/60"
-          />
-
-          <div className="fixed inset-0 z-50 flex items-end justify-center">
-            <motion.div
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              exit={{ y: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="w-full max-w-sm rounded-t-3xl bg-cp-surface p-6"
-              onClick={(e) => e.stopPropagation()}
-            >
+    <>
               <div className="mb-6 flex items-center justify-between">
                 <button
                   onClick={handlePrevMonth}
@@ -289,6 +264,40 @@ export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePicke
               <Button variant="primary" onClick={handleConfirm}>
                 Confirm
               </Button>
+    </>
+  )
+}
+
+export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePickerModalProps) {
+  const initialDate = value ?? new Date()
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 z-50 bg-black/60"
+          />
+
+          <div className="fixed inset-0 z-50 flex items-end justify-center">
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="w-full max-w-sm rounded-t-3xl bg-cp-surface p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <DatePickerContent
+                key={value != null ? value.getTime() : 'default'}
+                initialDate={initialDate}
+                onConfirm={onConfirm}
+                onClose={onClose}
+              />
             </motion.div>
           </div>
         </>

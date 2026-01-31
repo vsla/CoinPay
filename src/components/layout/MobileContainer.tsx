@@ -6,12 +6,6 @@ type MobileContainerProps = {
   className?: string
 }
 
-/**
- * Mobile-first fullscreen container that:
- * - Uses modern viewport units (100dvh) for mobile browser chrome
- * - Respects iOS safe-area insets
- * - Optionally centers within a max mobile width on larger screens
- */
 export function MobileContainer({ children, className }: MobileContainerProps) {
   return (
     <div className="min-h-dvh w-full bg-transparent">
