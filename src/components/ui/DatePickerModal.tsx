@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { Button } from './Button'
 
@@ -28,22 +28,31 @@ const MONTHS = [
 const WEEKDAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 
 export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePickerModalProps) {
-  const initialDate = value || new Date()
+  const now = new Date()
+  const initialDate = value ?? now
   const [selectedDate, setSelectedDate] = useState<Date>(initialDate)
   const [currentMonth, setCurrentMonth] = useState(initialDate.getMonth())
   const [currentYear, setCurrentYear] = useState(initialDate.getFullYear())
   const [showMonthPicker, setShowMonthPicker] = useState(false)
   const [showYearPicker, setShowYearPicker] = useState(false)
+  const yearListRef = useRef<HTMLDivElement>(null)
+  const currentYearButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     if (isOpen) {
-      const dateToUse = value || new Date()
+      const dateToUse = value ?? new Date()
       setSelectedDate(dateToUse)
       setCurrentMonth(dateToUse.getMonth())
       setCurrentYear(dateToUse.getFullYear())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, isOpen])
+
+  useEffect(() => {
+    if (showYearPicker && currentYearButtonRef.current && yearListRef.current) {
+      currentYearButtonRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+    }
+  }, [showYearPicker])
 
   const getDaysInMonth = (month: number, year: number) => {
     return new Date(year, month + 1, 0).getDate()
@@ -202,11 +211,15 @@ export function DatePickerModal({ isOpen, value, onConfirm, onClose }: DatePicke
               )}
 
               {showYearPicker && (
-                <div className="mb-4 max-h-48 overflow-y-auto rounded-xl border border-cp-border bg-cp-bg p-3">
+                <div
+                  ref={yearListRef}
+                  className="mb-4 max-h-48 overflow-y-auto rounded-xl border border-cp-border bg-cp-bg p-3"
+                >
                   <div className="grid grid-cols-4 gap-2">
                     {yearOptions.map((year) => (
                       <button
                         key={year}
+                        ref={currentYear === year ? currentYearButtonRef : undefined}
                         type="button"
                         onClick={() => handleYearSelect(year)}
                         className={`rounded-lg px-3 py-2 text-cp-body transition-colors ${

@@ -37,7 +37,7 @@ export function Input({
           {...props}
         />
         {rightIcon && (
-          <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2">
+          <div className="absolute right-4 top-1/2 -translate-y-1/2">
             {rightIcon}
           </div>
         )}

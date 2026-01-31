@@ -19,7 +19,12 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
 
     const requestCameraPermission = async () => {
       try {
-        // Check if getUserMedia is available
+        // Camera requires HTTPS (or localhost) in modern browsers
+        if (!window.isSecureContext) {
+          console.error('Camera requires a secure context (HTTPS). Use HTTPS or test on the same device with localhost.')
+          setCameraPermission('denied')
+          return
+        }
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
           console.error('getUserMedia is not supported')
           setCameraPermission('denied')
@@ -94,12 +99,25 @@ export function SelfieCaptureScreen({ onCapture, onBack }: SelfieCaptureScreenPr
         </>
       ) : cameraPermission === 'denied' ? (
         <div className="flex h-full w-full flex-col items-center justify-center p-6 text-center bg-[#121212]">
-          <p className="mb-4 text-white font-poppins font-normal text-sm leading-[19px] tracking-normal">
-            Camera permission is required to take a selfie
-          </p>
-          <p className="text-cp-muted font-poppins font-normal text-sm leading-[19px] tracking-normal">
-            Please enable camera access in your browser settings
-          </p>
+          {!window.isSecureContext ? (
+            <>
+              <p className="mb-4 text-white font-poppins font-normal text-sm leading-[19px] tracking-normal">
+                Camera requires a secure connection (HTTPS)
+              </p>
+              <p className="text-cp-muted font-poppins font-normal text-sm leading-[19px] tracking-normal">
+                When testing from your phone via HTTP, the browser blocks the camera. Use HTTPS (e.g. a tunnel or deploy) or test on the same device with localhost.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="mb-4 text-white font-poppins font-normal text-sm leading-[19px] tracking-normal">
+                Camera permission is required to take a selfie
+              </p>
+              <p className="text-cp-muted font-poppins font-normal text-sm leading-[19px] tracking-normal">
+                Please enable camera access in your browser settings
+              </p>
+            </>
+          )}
         </div>
       ) : (
         <div className="flex h-full w-full items-center justify-center bg-[#121212]">

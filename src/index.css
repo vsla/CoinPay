@@ -26,6 +26,13 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* Prevent iOS Safari zoom on input focus - inputs need font-size >= 16px */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
   ::selection {
     background: rgba(56, 189, 248, 0.24);
   }

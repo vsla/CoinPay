@@ -10,7 +10,8 @@ export function CreatePasscodeScreen({ onNext }: CreatePasscodeScreenProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    inputRef.current?.focus()
+    const timer = setTimeout(() => inputRef.current?.focus(), 100)
+    return () => clearTimeout(timer)
   }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,6 +58,7 @@ export function CreatePasscodeScreen({ onNext }: CreatePasscodeScreenProps) {
             autoFocus
             autoComplete="one-time-code"
             className="absolute inset-0 cursor-text opacity-0"
+            style={{ caretColor: 'transparent' }}
             aria-label="Passcode"
           />
           <div className="mb-12 flex gap-4">
