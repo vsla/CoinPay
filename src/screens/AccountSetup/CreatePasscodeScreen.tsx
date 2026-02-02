@@ -38,7 +38,7 @@ export function CreatePasscodeScreen({ onNext }: CreatePasscodeScreenProps) {
         This info needs to be accurate with your ID document.
       </p>
 
-      <div className="mb-auto flex flex-1 flex-col items-center justify-center">
+      <div className="mb-auto flex flex-1 flex-col items-center mt-16">
         <div
           className="relative flex cursor-text flex-col items-center justify-center"
           onClick={() => inputRef.current?.focus()}
