@@ -1,4 +1,4 @@
-import { getCountries, getCountryCallingCode } from 'libphonenumber-js'
+import { getCountryCallingCode, isSupportedCountry } from 'libphonenumber-js'
 
 type Country = {
   flag: string
@@ -22,7 +22,7 @@ export function enrichWithCallingCodes(countries: Country[]): EnrichedCountry[] 
     try {
       const upperCode = c.code.toUpperCase()
 
-      if (!getCountries().includes(upperCode as any)) {
+      if (!isSupportedCountry(upperCode)) {
         return {
           ...c,
           callingCode: [],
@@ -31,7 +31,7 @@ export function enrichWithCallingCodes(countries: Country[]): EnrichedCountry[] 
 
       return {
         ...c,
-        callingCode: [getCountryCallingCode(upperCode as any)],
+        callingCode: [getCountryCallingCode(upperCode)],
       }
     } catch {
       return {
