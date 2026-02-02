@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# Coinpay
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek, modern fintech onboarding and account setup flow. The app guides users from sign-up through verification with an intuitive, mobile-first UI—buttons, loaders, forms, and navigation are designed to feel clear and responsive.
 
-Currently, two official plugins are available:
+## Screens showcased
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Sign up & Create account** – Entry point with primary/secondary actions, then phone + password form with validation, password requirements, and navigation to the next step.
+- **Personal info** – Full name, username, and date of birth with a date picker, inline validation, and back/continue navigation.
+- **Welcome** – Post-setup congratulations screen with illustration and a primary “Continue” CTA.
 
-## React Compiler
+Additional flows (verification code, country, address, email, ID scan, selfie, passcode) are implemented so you can walk the full journey; the three above highlight how UI components and navigation are used.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## UI components demonstrated
 
-## Expanding the ESLint configuration
+- **Buttons** – Primary, secondary, and outline variants; loading state (“Loading…”) on submit.
+- **Loaders** – Spinner on verification-code send and during “Setting up account”.
+- **Forms** – Formik + Yup validation, inline errors, touch-on-submit, and disabled/enabled submit based on flow.
+- **Navigation** – Back arrow and step titles (e.g. “Account setup”, “Set pin”), progress bar on verification steps.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Running the app
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**Requirements:** Node 18+
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# Install dependencies
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start dev server (http://localhost:5173)
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+To test on a real device (e.g. phone) on the same network:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev:network
 ```
+
+Then open the URL shown (e.g. `http://192.168.x.x:5173`) on the device. Camera on the selfie step requires HTTPS or `localhost`.
+
+## Tech stack
+
+- React 19, TypeScript, Vite  
+- Tailwind CSS, Framer Motion  
+- Formik, Yup  
+- react-icons  
+
+## Project structure
+
+- `src/screens/` – Screen components (SignUp, AccountSetup, Verification, etc.)
+- `src/components/ui/` – Reusable UI (Button, Input, PhoneInput, DatePickerModal, etc.)
+- `src/components/layout/` – FormLayout, PageHeader, MobileContainer
+- `src/routes.tsx` – Screen flow and layout wiring
+- `src/utils/validationSchemas.ts` – Yup schemas for forms
+
+## Tests
+
+```bash
+npm test
+```
+
+See `src/**/*.test.ts` and `src/**/*.test.tsx` for unit tests (validation, Button, routes).
